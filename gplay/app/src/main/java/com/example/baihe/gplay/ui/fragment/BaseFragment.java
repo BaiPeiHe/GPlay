@@ -6,10 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.baihe.gplay.Utils.UIUtils;
 import com.example.baihe.gplay.ui.view.LoadingPage;
+
+import java.util.ArrayList;
 
 /**
  * Created by baihe on 2017/2/23.
@@ -53,6 +54,22 @@ public abstract class BaseFragment extends Fragment {
         if(mLoadingPage != null){
             mLoadingPage.loadData();
         }
+    }
+
+    // 对网络请求的数据进行校验
+    public LoadingPage.ResultState check(Object obj){
+        if(obj != null){
+            if(obj instanceof ArrayList){ // 判断是否为集合
+                ArrayList list = (ArrayList) obj;
+                if(list.isEmpty()){ // 判断是否为空
+                    return LoadingPage.ResultState.STATE_EMPTY;
+                }
+                else {
+                    return LoadingPage.ResultState.STATE_SUCCESS;
+                }
+            }
+        }
+        return LoadingPage.ResultState.STATE_ERROR;
     }
 
 }

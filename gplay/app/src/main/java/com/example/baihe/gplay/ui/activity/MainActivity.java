@@ -33,7 +33,9 @@ public class MainActivity extends BaseActivity {
 
         mPagerTab.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onPageScrolled(int position, float positionOffset, int
+                    positionOffsetPixels) {
+
                 BaseFragment fragment = FragmentFactory.createFragmet(position);
 
                 // 开始加载数据
