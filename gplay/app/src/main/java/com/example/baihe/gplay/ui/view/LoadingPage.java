@@ -3,6 +3,7 @@ package com.example.baihe.gplay.ui.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.example.baihe.gplay.R;
@@ -63,6 +64,16 @@ public abstract class LoadingPage extends FrameLayout {
         // 初始化 加载失败 布局
         if(mErrorPage == null){
             mErrorPage = UIUtils.inFlate(R.layout.page_error);
+
+            // 点击重试事件
+            Button btnRetry = (Button) mErrorPage.findViewById(R.id.btn_retry);
+            btnRetry.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadData();
+                }
+            });
+
             addView(mErrorPage);
         }
 

@@ -1,7 +1,6 @@
 package com.example.baihe.gplay.ui.fragment;
 
 import android.view.View;
-import android.widget.ListView;
 
 import com.example.baihe.gplay.Utils.UIUtils;
 import com.example.baihe.gplay.domain.AppInfo;
@@ -9,6 +8,7 @@ import com.example.baihe.gplay.http.Protocol.HomeProtocol;
 import com.example.baihe.gplay.ui.adapter.MyBaseAdapter;
 import com.example.baihe.gplay.ui.holder.BaseHolder;
 import com.example.baihe.gplay.ui.holder.HomeHolder;
+import com.example.baihe.gplay.ui.view.BHListView;
 import com.example.baihe.gplay.ui.view.LoadingPage;
 
 import java.util.ArrayList;
@@ -25,7 +25,8 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View onCreateSuccessView() {
 
-        ListView view = new ListView(UIUtils.getContext());
+        BHListView view = (BHListView) new BHListView(UIUtils.getContext());
+
         view.setAdapter(new HomeAdapter(dataList));
 
         return view;
@@ -36,11 +37,6 @@ public class HomeFragment extends BaseFragment {
     public LoadingPage.ResultState onLoad() {
 
         // 请求网络
-//        dataList = new ArrayList<String>();
-//        for(int i = 0; i < 20; i++){
-//            dataList.add("测试数据" + i);
-//        }
-
         HomeProtocol protocol = new HomeProtocol();
         dataList = protocol.getData(0);// 加载第一页数据
 

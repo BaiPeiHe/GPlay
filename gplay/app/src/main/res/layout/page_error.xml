@@ -13,10 +13,10 @@
         android:id="@+id/imageView" />
 
     <Button
+        android:id="@+id/btn_retry"
         android:text="加载失败，请重试"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
         android:background="@drawable/btn_load_error_selector"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
