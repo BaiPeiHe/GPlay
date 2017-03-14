@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.example.baihe.gplay.Utils.UIUtils;
 import com.example.baihe.gplay.domain.AppInfo;
+import com.example.baihe.gplay.http.Protocol.AppProtocal;
 import com.example.baihe.gplay.ui.adapter.MyBaseAdapter;
 import com.example.baihe.gplay.ui.holder.AppHolder;
 import com.example.baihe.gplay.ui.holder.BaseHolder;
@@ -31,7 +32,11 @@ public class AppFragment extends BaseFragment {
 
     @Override
     public LoadingPage.ResultState onLoad() {
-        return LoadingPage.ResultState.STATE_ERROR;
+        // 请求网络数据
+        AppProtocal appProtocal = new AppProtocal();
+        dataList = appProtocal.getData(0);
+
+        return check(dataList);
     }
 
     class AppAdapter extends MyBaseAdapter<AppInfo>{
@@ -47,7 +52,13 @@ public class AppFragment extends BaseFragment {
 
         @Override
         public ArrayList onLoadMore() {
-            return null;
+
+            ArrayList<AppInfo> moreDataList = new ArrayList<AppInfo>();
+
+            AppProtocal protocal = new AppProtocal();
+            moreDataList = protocal.getData(dataList.size());
+
+            return moreDataList;
         }
     }
 

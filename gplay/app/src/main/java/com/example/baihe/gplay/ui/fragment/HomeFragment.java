@@ -7,6 +7,7 @@ import com.example.baihe.gplay.domain.AppInfo;
 import com.example.baihe.gplay.http.Protocol.HomeProtocol;
 import com.example.baihe.gplay.ui.adapter.MyBaseAdapter;
 import com.example.baihe.gplay.ui.holder.BaseHolder;
+import com.example.baihe.gplay.ui.holder.HomeBannerHolder;
 import com.example.baihe.gplay.ui.holder.HomeHolder;
 import com.example.baihe.gplay.ui.view.BHListView;
 import com.example.baihe.gplay.ui.view.LoadingPage;
@@ -25,9 +26,13 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View onCreateSuccessView() {
 
+        // listView
         BHListView view = (BHListView) new BHListView(UIUtils.getContext());
-
         view.setAdapter(new HomeAdapter(dataList));
+
+        // banner
+        HomeBannerHolder bannerHolder = new HomeBannerHolder();
+        view.addHeaderView(bannerHolder.getRootView());
 
         return view;
     }
