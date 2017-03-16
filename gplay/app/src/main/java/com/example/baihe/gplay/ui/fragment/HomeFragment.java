@@ -21,6 +21,7 @@ import java.util.ArrayList;
 public class HomeFragment extends BaseFragment {
 
     private ArrayList<AppInfo> dataList;
+    private ArrayList<String> bannerData;
 
     // 如果数据加载成功，回调此方法，运行在主线程
     @Override
@@ -28,11 +29,16 @@ public class HomeFragment extends BaseFragment {
 
         // listView
         BHListView view = (BHListView) new BHListView(UIUtils.getContext());
-        view.setAdapter(new HomeAdapter(dataList));
 
         // banner
         HomeBannerHolder bannerHolder = new HomeBannerHolder();
         view.addHeaderView(bannerHolder.getRootView());
+
+        view.setAdapter(new HomeAdapter(dataList));
+        // banner 数据
+        if(bannerData != null){
+            bannerHolder.setData(bannerData);
+        }
 
         return view;
     }
@@ -44,6 +50,8 @@ public class HomeFragment extends BaseFragment {
         // 请求网络
         HomeProtocol protocol = new HomeProtocol();
         dataList = protocol.getData(0);// 加载第一页数据
+
+        bannerData = protocol.getBannerData();
 
         return check(dataList);
     }

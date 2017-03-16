@@ -13,6 +13,9 @@ import java.util.ArrayList;
  */
 
 public class HomeProtocol extends BaseProtocol<ArrayList<AppInfo>> {
+
+    private ArrayList<String> bannerInfos;
+
     @Override
     public String getKey() {
         return "home";
@@ -51,7 +54,7 @@ public class HomeProtocol extends BaseProtocol<ArrayList<AppInfo>> {
 
             // 解析 banner 数据
             JSONArray jaBanner = jo.getJSONArray("picture");
-            ArrayList<String> bannerInfos = new ArrayList<String>();
+            bannerInfos = new ArrayList<String>();
             for(int i = 0; i < jaBanner.length(); i++){
                 String pic = jaBanner.getString(i);
                 bannerInfos.add(pic);
@@ -65,4 +68,9 @@ public class HomeProtocol extends BaseProtocol<ArrayList<AppInfo>> {
 
         return null;
     }
+
+    public ArrayList<String> getBannerData() {
+        return bannerInfos;
+    }
+
 }
